@@ -27,7 +27,7 @@ def test_fetch_forecast_returns_json(monkeypatch):
         (None, requests.exceptions.HTTPError(), None),  # Simulerar ett HTTP-fel
         (None, None, ValueError()),  # Simulerar ett JSON-fel
     ],
-    ids=["timeout", "http_error", "json_error"] # Namnger testfallen för tydlighet
+    ids=["timeout", "http_error", "json_error"],  # Namnger testfallen för tydlighet
 )
 def test_fetch_forecast_raises_weather_api_error(
     monkeypatch, get_error, status_error, json_error
