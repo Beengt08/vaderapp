@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Välj stad</h1>
+<form action="{{ url_for('forecast') }}" method="get" class="row g-2">
+    <div class="col-auto">
+        <select name="city" class="form-select">
+            {% for city in cities %}
+            <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Visa väder</button>
+    </div>
+</form>
+{% endblock %}

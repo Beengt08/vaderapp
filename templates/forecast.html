@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Väder i {{ city }}{% endblock %}
+
+{% block content %}
+<h1>{{ city }}</h1>
+<p class="lead">
+    Just nu: {{ current.temperature | format_temp }}, vind {{ current.wind_speed }} km/h
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Datum</th><th>Högsta</th><th>Lägsta</th><th>Nederbörd</th></tr>
+    </thead>
+    <tbody>
+        {% for day in days %}
+        <tr>
+            <td>{{ day.date }}</td>
+            <td>{{ day.max | format_temp }}</td>
+            <td>{{ day.min | format_temp }}</td>
+            <td>{{ day.precipitation }} mm</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Välj en annan stad</a>
+{% endblock %}
