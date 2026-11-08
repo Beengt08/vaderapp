@@ -2,10 +2,20 @@
 
 import pytest
 
+from app import app
+
+
+@pytest.fixture  # Skapar en testklient för Flask-appen
+def client():
+    """Flasks testklient: anropar routes utan att starta en riktig server."""
+    app.config["TESTING"] = True  # Gör att appen körs i testläge
+    with app.test_client() as client:  # Låtsas vara en klient utan riktig server
+        yield client  # Lämnar testklienten till testet
+
 
 @pytest.fixture
 def sample_response():
-    """Ett giltigt API-svar i samma format som Open-Mateo, utan nätverk"""
+    """Ett giltigt API-svar i samma format som Open-Meteo, utan nätverk"""
     return {
         "current": {"temperature_2m": 5.1, "wind_speed_10m": 12.6},
         "daily": {
